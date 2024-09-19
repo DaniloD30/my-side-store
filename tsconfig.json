@@ -17,15 +17,16 @@
         "name": "next"
       }
     ],
+    "types": ["@testing-library/jest-dom"],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": [
-    ".jest/setup.ts",
+"include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "types.d.ts",
     ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
