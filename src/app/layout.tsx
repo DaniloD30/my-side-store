@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-
+import { type_second } from "@/functions/fonts";
 export const metadata: Metadata = {
   title: "My Side Store",
   description: "Store",
@@ -13,9 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        {children}
-      </body>
+      <body className={type_second.variable}>{children}</body>
     </html>
   );
 }
