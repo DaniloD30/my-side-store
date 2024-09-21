@@ -2,9 +2,9 @@ import { ResponseProduct } from "@/components/CardProduct/types";
 
 export default function searchProductsByTitle(
   data: ResponseProduct,
-  nameSearch?: string
+  nameSearch: string
 ) {
-  if (nameSearch && data?.products) {
+  if (nameSearch !== '' && data?.products) {
     const lowercasedNameSearch = nameSearch.toLowerCase();
 
     data = {
