@@ -13,8 +13,7 @@ import Products from "../Products";
 import { startTransition, useEffect, useState } from "react";
 
 //TODO: Testes Unitarios
-//TODO: Mais de um contexto? Um contexto maior para o Carrinho e outro para
-// os states ...
+
 //TODO: Lembre das responsabilidades
 
 //TODO: Tirar os contextos, usar state no Feed
