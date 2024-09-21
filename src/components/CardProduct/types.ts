@@ -3,6 +3,13 @@ export type ResponseProduct = {
   message: string;
   products: Product[];
 };
+
+export type ResponseSingleProduct = {
+  status: string;
+  message: string;
+  product: Product;
+};
+
 export type ResponseProductCategories = {
   status: string;
   message: string;

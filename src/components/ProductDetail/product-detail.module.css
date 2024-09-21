@@ -1,0 +1,21 @@
+.containerDetail {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+}
+
+.containerText {
+    display: flex;
+    gap: 10px
+}
+.description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

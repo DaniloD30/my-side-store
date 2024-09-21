@@ -16,7 +16,9 @@ export default function Header() {
           />
         </Link>
 
-        <Link className={styles.cart} href={"/cart"}>Carrinho</Link>
+        <Link className={styles.cart} href={"/cart"}>
+          Carrinho
+        </Link>
       </nav>
     </header>
   );
