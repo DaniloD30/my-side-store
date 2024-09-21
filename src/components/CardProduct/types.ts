@@ -3,6 +3,11 @@ export type ResponseProduct = {
   message: string;
   products: Product[];
 };
+export type ResponseProductCategories = {
+  status: string;
+  message: string;
+  categories: Array<string>;
+};
 
 export type Product = {
   id: number;

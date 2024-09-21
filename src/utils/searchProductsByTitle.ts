@@ -1,8 +1,8 @@
 import { ResponseProduct } from "@/components/CardProduct/types";
 
 export default function searchProductsByTitle(
-  data: ResponseProduct,
-  nameSearch: string
+  nameSearch: string,
+  data?: ResponseProduct
 ) {
   if (nameSearch !== '' && data?.products) {
     const lowercasedNameSearch = nameSearch.toLowerCase();

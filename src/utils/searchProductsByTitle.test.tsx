@@ -72,7 +72,7 @@ const mockData: ResponseProduct = {
 };
 describe("utils -> search products", () => {
   const searchProducts = [
-    { value: undefined, expected: mockData },
+    { value: "", expected: mockData },
     {
       value: "lg",
       expected: {
@@ -106,7 +106,7 @@ describe("utils -> search products", () => {
   it.each(searchProducts)(
     'should search title "$value" and return "$expected"',
     ({ value, expected }) => {
-      expect(searchProductsByTitle(mockData, value)).toEqual(expected);
+      expect(searchProductsByTitle(value, mockData)).toEqual(expected);
     }
   );
 });

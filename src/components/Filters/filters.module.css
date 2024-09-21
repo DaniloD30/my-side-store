@@ -3,8 +3,6 @@
     align-items: center;
     margin-bottom: 20px;
     gap: 20px;
-    max-width: 50%;
-
 }
 
 .group {
@@ -36,6 +34,7 @@
     transition: .3s ease;
 }
 
+
 .group .textField::placeholder {
     color: #9e9ea7;
 }
@@ -47,3 +46,25 @@
     background-color: #fff;
     box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
 }
+
+.selectCategory {
+    cursor: pointer;
+    height: 40px;
+    line-height: 28px;
+    padding: 0 1rem;
+    border: 2px solid;
+    border-radius: 8px;
+    outline: none;
+    background-color: #f3f3f4;
+    color: #0d0c22;
+    transition: .3s ease;
+}
+
+.selectCategory:focus,
+.selectCategory:hover {
+    outline: none;
+    border-color: rgba(234, 76, 137, 0.4);
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+}
+
