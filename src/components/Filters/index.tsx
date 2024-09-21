@@ -6,14 +6,17 @@ import { Dispatch, SetStateAction } from "react";
 
 export default function Filters({
   categories,
+  nameSearch,
   setNameSearch,
   setCategorySearch,
+  resetFilters,
 }: {
+  nameSearch: string;
   categories?: Array<string>;
   setNameSearch: Dispatch<SetStateAction<string>>;
   setCategorySearch: Dispatch<SetStateAction<string>>;
+  resetFilters: () => void;
 }) {
-
   return (
     <div className={styles.containerFilters}>
       <div className={styles.group}>
@@ -23,6 +26,7 @@ export default function Filters({
           </g>
         </svg>
         <input
+          value={nameSearch}
           className={styles.textField}
           placeholder="Search"
           type="search"
@@ -43,6 +47,14 @@ export default function Filters({
             </option>
           ))}
         </select>
+      </div>
+      <div>
+        <button
+          className={styles.selectCategory}
+          onClick={() => resetFilters()}
+        >
+          Resetar Filtros
+        </button>
       </div>
     </div>
   );

@@ -10,6 +10,10 @@ body {
   --type-second: var(--type-second-spectral), Georgia;
   --red-color: #fb414d;
   --red-color-background: #f8f6f7;
+  --primary: #23adad;
+  --greyLight: #23adade1;
+  --greyLight-2: #cbe0dd;
+  --greyDark: #2d4848;
   font-family: var(--type-first);
   background-color: var(--red-color-background);
 }
@@ -30,17 +34,18 @@ li {
 }
 
 img {
+  height: auto;
   display: block;
   max-width: 100%;
 }
 
-button,
+/* button,
 input {
   display: block;
   font-size: 1rem;
   font-family: var(--type-first);
   color: #333;
-}
+} */
 
 a {
   text-decoration: none;

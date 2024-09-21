@@ -11,29 +11,36 @@ import {
 import Filters from "../Filters";
 import Products from "../Products";
 import { startTransition, useEffect, useState } from "react";
+import Pagination from "../Pagination";
 
 //TODO: Testes Unitarios
 
 //TODO: Lembre das responsabilidades
-
-//TODO: Tirar os contextos, usar state no Feed
-//      e tirar o async do function e por dentro de um async no useEffect
+//TODO: Diminuir UseState
+//TODO: Resetar filtros
+//TODO: Componentes Condicionais
 
 export default function Feed() {
   const [categories, setCategories] = useState<ResponseProductCategories>();
   const [products, setProducts] = useState<ResponseProduct>();
   const [nameSearch, setNameSearch] = useState<string>("");
   const [category, setCategory] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
     startTransition(async () => {
-      const data: ResponseProduct = await productsGet();
       const dataCategories: ResponseProductCategories =
         await productsCategoriesGet();
-      setProducts(data);
       setCategories(dataCategories);
     });
   }, []);
+
+  useEffect(() => {
+    startTransition(async () => {
+      const data: ResponseProduct = await productsGet(page);
+      setProducts(data);
+    });
+  }, [page]);
 
   useEffect(() => {
     if (category !== "") {
@@ -45,14 +52,25 @@ export default function Feed() {
     }
   }, [category]);
 
+  const resetFilters = () => {
+    setNameSearch("");
+    setCategory("");
+    setPage(1);
+  };
+
   return (
     <>
       <Filters
+        nameSearch={nameSearch}
         categories={categories?.categories}
         setCategorySearch={setCategory}
         setNameSearch={setNameSearch}
+        resetFilters={resetFilters}
       />
       <Products data={products} nameSearch={nameSearch} />
+      {nameSearch !== "" || category !== "" ? null : (
+        <Pagination page={page} total={150} setPage={setPage} />
+      )}
     </>
   );
 }

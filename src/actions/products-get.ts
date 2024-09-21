@@ -5,8 +5,8 @@ import {
   ResponseProductCategories,
 } from "@/components/CardProduct/types";
 
-export async function productsGet() {
-  const response = await fetch("https://fakestoreapi.in/api/products");
+export async function productsGet(page: number) {
+  const response = await fetch(`https://fakestoreapi.in/api/products?page=${page}&limit=10`);
 
   const data = (await response.json()) as ResponseProduct;
 
