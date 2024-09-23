@@ -47,6 +47,7 @@ export default function ProductDetail({ product }: { product: Product }) {
           </div>
         </div>
         <div className={styles.image}>
+          {/* //TODO: Verificar se ja foi adicionado ao cart */}
           <button
             className={styles.selectCategory}
             onClick={() => handleAddProduct(product)}

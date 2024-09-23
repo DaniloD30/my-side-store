@@ -21,6 +21,7 @@ export default function CardProduct({ product }: { product: Product }) {
             alt={product.title}
             width={220}
             height={220}
+            loading="lazy"
             sizes="80vw"
           />
         </div>
@@ -29,6 +30,7 @@ export default function CardProduct({ product }: { product: Product }) {
           <h5 className={styles.title}>${product.price}</h5>
         </div>
       </Link>
+      {/* //TODO: Verificar se ja foi adicionado ao cart */}
       <div className={styles.containerTitle}>
         <button onClick={() => handleAddProduct(product)}>
           Adicionar ao carrinho

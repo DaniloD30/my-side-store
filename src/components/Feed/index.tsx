@@ -13,7 +13,6 @@ import { initialState, reducer } from "@/functions/reducer";
 //TODO: Lembre das responsabilidades
 //TODO: Componentes Condicionais
 //TODO: Responsividade
-//TODO: Disabled Resetar Filtros
 //TODO: Publicação na Vercel
 //TODO: Testes Unitarios
 
@@ -55,8 +54,8 @@ export default function Feed() {
     <>
       <Filters
         nameSearch={state.nameSearch}
-        categories={state.categories?.categories}
         category={state.category}
+        categories={state.categories?.categories}
         dispatch={dispatch}
       />
       {isPending && <h4>Loading</h4>}

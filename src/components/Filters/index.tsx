@@ -15,6 +15,7 @@ export default function Filters({
   categories?: Array<string>;
   dispatch: (action: Action) => void;
 }) {
+  const disabled = nameSearch === "" && category === "";
   return (
     <div className={styles.containerFilters}>
       <div className={styles.group}>
@@ -51,14 +52,15 @@ export default function Filters({
           ))}
         </select>
       </div>
-      <div>
+      {!disabled && (
         <button
+          disabled={disabled}
           className={styles.selectCategory}
           onClick={() => dispatch({ type: "RESET_FILTERS" })}
         >
           Resetar Filtros
         </button>
-      </div>
+      )}
     </div>
   );
 }

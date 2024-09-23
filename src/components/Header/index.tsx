@@ -10,7 +10,7 @@ export default function Header() {
           <Image
             src={"/assets/myside-logo.svg"}
             alt="MySide"
-            width={118}
+            width={150}
             height={32}
             priority
           />

@@ -3,22 +3,31 @@
 import { useProduct } from "@/context/ProductContext";
 import style from "./cart.module.css";
 import Image from "next/image";
-
+import { useRouter } from "next/navigation";
 //TODO: your cart is empty
 //TODO: Verificar a quantidade de itens do carrinho
 //TODO: Remover item do carrinho
 
 export default function Cart() {
   const { productsCart } = useProduct();
+
+  const router = useRouter();
+
+  const label = productsCart.length > 1 ? "Produtos" : "Produto";
   return (
     <section className="container mainContainer">
       <div className={style.containerTitleAndButton}>
         <div className={style.containerTitle}>
           <h1 className="title">Carrinho</h1>
-          <h5>{`(${productsCart.length} Produtos)`}</h5>
+          {productsCart.length > 0 && (
+            <h5>{`(${productsCart.length} ${label})`}</h5>
+          )}
         </div>
         <div>
-          <button className={style.selectCategory}>
+          <button
+            className={style.selectCategory}
+            onClick={() => router.push("/")}
+          >
             Voltar para os produtos
           </button>
         </div>
