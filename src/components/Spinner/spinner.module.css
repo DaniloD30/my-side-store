@@ -1,0 +1,21 @@
+.containerSpin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+  }
+  
+  .svgSpin {
+    fill: var(--dark-blue-color);
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+  
+    to {
+      transform: rotate(360deg);
+    }
+  }

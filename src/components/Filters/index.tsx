@@ -9,10 +9,12 @@ export default function Filters({
   nameSearch,
   dispatch,
   category,
+  loadingCategories
 }: {
   nameSearch: string;
   category: string;
   categories?: Array<string>;
+  loadingCategories: boolean;
   dispatch: (action: Action) => void;
 }) {
   const disabled = nameSearch === "" && category === "";
@@ -38,6 +40,7 @@ export default function Filters({
       <div>
         <select
           value={category}
+          disabled={loadingCategories}
           className={styles.selectCategory}
           onChange={(e) =>
             dispatch({ type: "SET_CATEGORY", payload: e.target.value })

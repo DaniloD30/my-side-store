@@ -9,6 +9,8 @@ interface State {
   nameSearch: string;
   category: string;
   page: number;
+  loading: boolean;
+  loadingCategories: boolean;
 }
 
 export type Action =
@@ -17,6 +19,8 @@ export type Action =
   | { type: "SET_NAME_SEARCH"; payload: string }
   | { type: "SET_CATEGORY"; payload: string }
   | { type: "SET_PAGE"; payload: number }
+  | { type: "SET_LOADING"; payload: boolean }
+  | { type: "SET_LOADING_CATEGORIES"; payload: boolean }
   | { type: "RESET_FILTERS" };
 
 export const initialState: State = {
@@ -25,6 +29,8 @@ export const initialState: State = {
   nameSearch: "",
   category: "",
   page: 1,
+  loading: true,
+  loadingCategories: true,
 };
 
 export function reducer(state: State, action: Action): State {
@@ -37,8 +43,12 @@ export function reducer(state: State, action: Action): State {
       return { ...state, nameSearch: action.payload };
     case "SET_CATEGORY":
       return { ...state, category: action.payload };
+    case "SET_LOADING_CATEGORIES":
+      return { ...state, loadingCategories: action.payload };
     case "SET_PAGE":
       return { ...state, page: action.payload };
+    case "SET_LOADING":
+      return { ...state, loading: action.payload };
     case "RESET_FILTERS":
       return { ...state, page: 1, nameSearch: "", category: "" };
     default:

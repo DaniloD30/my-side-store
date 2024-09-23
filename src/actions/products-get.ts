@@ -38,7 +38,7 @@ export async function productGet(product: number) {
 
     if (!response.ok) throw new Error("Erro ao listar o produto");
     const data = (await response.json()) as ResponseSingleProduct;
-    return data;
+    return { data, ok: true, error: "" };
   } catch (error) {
     return apiError(error);
   }
@@ -63,7 +63,6 @@ export async function productsCategoriesGet() {
   }
 }
 
-
 export async function productsCategoryGet(category: string) {
   try {
     const response = await fetch(
@@ -83,4 +82,3 @@ export async function productsCategoryGet(category: string) {
     return apiError(error);
   }
 }
-
