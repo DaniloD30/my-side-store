@@ -50,7 +50,7 @@ export async function productsCategoriesGet() {
       "https://fakestoreapi.in/api/products/category",
       {
         next: {
-          revalidate: 60,
+          revalidate: Infinity,
         },
       }
     );
