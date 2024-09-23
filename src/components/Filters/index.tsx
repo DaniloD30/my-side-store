@@ -1,21 +1,19 @@
 "use client";
+import { Action } from "@/functions/reducer";
 import styles from "./filters.module.css";
-import { Dispatch, SetStateAction } from "react";
 
 //TODO: Testes Unitarios
 
 export default function Filters({
   categories,
   nameSearch,
-  setNameSearch,
-  setCategorySearch,
-  resetFilters,
+  dispatch,
+  category,
 }: {
   nameSearch: string;
+  category: string;
   categories?: Array<string>;
-  setNameSearch: Dispatch<SetStateAction<string>>;
-  setCategorySearch: Dispatch<SetStateAction<string>>;
-  resetFilters: () => void;
+  dispatch: (action: Action) => void;
 }) {
   return (
     <div className={styles.containerFilters}>
@@ -31,13 +29,18 @@ export default function Filters({
           placeholder="Search"
           type="search"
           maxLength={255}
-          onChange={(e) => setNameSearch(e.target.value)}
+          onChange={(e) =>
+            dispatch({ type: "SET_NAME_SEARCH", payload: e.target.value })
+          }
         />
       </div>
       <div>
         <select
+          value={category}
           className={styles.selectCategory}
-          onChange={(e) => setCategorySearch(e.target.value)}
+          onChange={(e) =>
+            dispatch({ type: "SET_CATEGORY", payload: e.target.value })
+          }
         >
           <option value="">Categoria</option>
           {categories?.map((category, index) => (
@@ -51,7 +54,7 @@ export default function Filters({
       <div>
         <button
           className={styles.selectCategory}
-          onClick={() => resetFilters()}
+          onClick={() => dispatch({ type: "RESET_FILTERS" })}
         >
           Resetar Filtros
         </button>

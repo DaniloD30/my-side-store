@@ -4,83 +4,65 @@ import {
   productsCategoriesGet,
   productsCategoryGet,
 } from "@/actions/products-get";
-import {
-  ResponseProduct,
-  ResponseProductCategories,
-} from "../CardProduct/types";
 import Filters from "../Filters";
 import Products from "../Products";
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useReducer, useTransition } from "react";
 import Pagination from "../Pagination";
-
-//TODO: Testes Unitarios
+import { initialState, reducer } from "@/functions/reducer";
 
 //TODO: Lembre das responsabilidades
-//TODO: Diminuir UseState
-//TODO: Resetar filtros
 //TODO: Componentes Condicionais
 //TODO: Responsividade
 //TODO: Disabled Resetar Filtros
-//TODO: Carrinho
 //TODO: Publicação na Vercel
 //TODO: Testes Unitarios
 
 export default function Feed() {
-  const [categories, setCategories] = useState<ResponseProductCategories>();
-  const [products, setProducts] = useState<ResponseProduct>();
-  const [nameSearch, setNameSearch] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
-  const [page, setPage] = useState<number>(1);
   const [isPending, startTransition] = useTransition();
+
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     startTransition(async () => {
       const { data } = await productsCategoriesGet();
       if (data) {
-        setCategories(data);
+        dispatch({ type: "SET_CATEGORIES", payload: data });
       }
     });
   }, []);
 
   useEffect(() => {
     startTransition(async () => {
-      const { data } = await productsGet(page);
+      const { data } = await productsGet(state.page);
       if (data) {
-        setProducts(data);
+        dispatch({ type: "SET_PRODUCTS", payload: data });
       }
     });
-  }, [page]);
+  }, [state.page]);
 
   useEffect(() => {
-    if (category !== "") {
+    if (state.category !== "") {
       startTransition(async () => {
-        const { data } = await productsCategoryGet(category);
+        const { data } = await productsCategoryGet(state.category);
         if (data) {
-          setProducts(data);
+          dispatch({ type: "SET_PRODUCTS", payload: data });
         }
       });
     }
-  }, [category]);
-
-  const resetFilters = () => {
-    setNameSearch("");
-    setCategory("");
-    setPage(1);
-  };
+  }, [state.category]);
 
   return (
     <>
       <Filters
-        nameSearch={nameSearch}
-        categories={categories?.categories}
-        setCategorySearch={setCategory}
-        setNameSearch={setNameSearch}
-        resetFilters={resetFilters}
+        nameSearch={state.nameSearch}
+        categories={state.categories?.categories}
+        category={state.category}
+        dispatch={dispatch}
       />
       {isPending && <h4>Loading</h4>}
-      <Products data={products} nameSearch={nameSearch} />
-      {nameSearch !== "" || category !== "" ? null : (
-        <Pagination page={page} total={150} setPage={setPage} />
+      <Products data={state.products} nameSearch={state.nameSearch} />
+      {state.nameSearch !== "" || state.category !== "" ? null : (
+        <Pagination page={state.page} total={150} dispatch={dispatch} />
       )}
     </>
   );

@@ -1,12 +1,13 @@
-import { Dispatch, SetStateAction, useMemo } from "react";
+import { useMemo } from "react";
 import styles from "./pagination.module.css";
+import { Action } from "@/functions/reducer";
 
 type PaginationProps = {
   page: number;
   total: number;
-  setPage: Dispatch<SetStateAction<number>>;
+  dispatch: (action: Action) => void;
 };
-const Pagination = ({ page, total, setPage }: PaginationProps) => {
+const Pagination = ({ page, total, dispatch }: PaginationProps) => {
   const numPages = useMemo(() => {
     return Math.ceil(total / 10);
   }, [total]);
@@ -19,7 +20,7 @@ const Pagination = ({ page, total, setPage }: PaginationProps) => {
         {page !== 1 && (
           <li
             className={styles.btn}
-            onClick={() => setPage((prev) => prev - 1)}
+            onClick={() => dispatch({ type: "SET_PAGE", payload: page - 1 })}
           >
             <span>{`<`}</span>
           </li>
@@ -31,7 +32,7 @@ const Pagination = ({ page, total, setPage }: PaginationProps) => {
             className={`${
               actualPage(index + 1) ? styles.numberActive : styles.number
             }`}
-            onClick={() => setPage(index + 1)}
+            onClick={() => dispatch({ type: "SET_PAGE", payload: index + 1 })}
           >
             {index + 1}
           </li>
@@ -40,7 +41,7 @@ const Pagination = ({ page, total, setPage }: PaginationProps) => {
         {page !== numPages && (
           <li
             className={styles.btn}
-            onClick={() => setPage((prev) => prev + 1)}
+            onClick={() => dispatch({ type: "SET_PAGE", payload: page + 1 })}
           >
             <span>{`>`}</span>
           </li>
