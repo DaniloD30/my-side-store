@@ -10,7 +10,7 @@ import {
 } from "../CardProduct/types";
 import Filters from "../Filters";
 import Products from "../Products";
-import { startTransition, useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import Pagination from "../Pagination";
 
 //TODO: Testes Unitarios
@@ -19,6 +19,11 @@ import Pagination from "../Pagination";
 //TODO: Diminuir UseState
 //TODO: Resetar filtros
 //TODO: Componentes Condicionais
+//TODO: Responsividade
+//TODO: Disabled Resetar Filtros
+//TODO: Carrinho
+//TODO: Publicação na Vercel
+//TODO: Testes Unitarios
 
 export default function Feed() {
   const [categories, setCategories] = useState<ResponseProductCategories>();
@@ -26,28 +31,33 @@ export default function Feed() {
   const [nameSearch, setNameSearch] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [page, setPage] = useState<number>(1);
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
     startTransition(async () => {
-      const dataCategories: ResponseProductCategories =
-        await productsCategoriesGet();
-      setCategories(dataCategories);
+      const { data } = await productsCategoriesGet();
+      if (data) {
+        setCategories(data);
+      }
     });
   }, []);
 
   useEffect(() => {
     startTransition(async () => {
-      const data: ResponseProduct = await productsGet(page);
-      setProducts(data);
+      const { data } = await productsGet(page);
+      if (data) {
+        setProducts(data);
+      }
     });
   }, [page]);
 
   useEffect(() => {
     if (category !== "") {
       startTransition(async () => {
-        const dataFilterByCategories: ResponseProduct =
-          await productsCategoryGet(category);
-        setProducts(dataFilterByCategories);
+        const { data } = await productsCategoryGet(category);
+        if (data) {
+          setProducts(data);
+        }
       });
     }
   }, [category]);
@@ -67,6 +77,7 @@ export default function Feed() {
         setNameSearch={setNameSearch}
         resetFilters={resetFilters}
       />
+      {isPending && <h4>Loading</h4>}
       <Products data={products} nameSearch={nameSearch} />
       {nameSearch !== "" || category !== "" ? null : (
         <Pagination page={page} total={150} setPage={setPage} />
