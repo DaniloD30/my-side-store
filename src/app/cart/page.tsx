@@ -5,15 +5,13 @@ import style from "./cart.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-//TODO: your cart is empty
-
 export default function Cart() {
   const { productsCart } = useProduct();
 
   const router = useRouter();
 
   const label = productsCart.length > 1 ? "Produtos" : "Produto";
-
+  const cartEmpty = productsCart.length === 0;
   return (
     <section className="container mainContainer">
       <div className={style.containerTitleAndButton}>
@@ -32,38 +30,54 @@ export default function Cart() {
           </button>
         </div>
       </div>
-      {productsCart.map((product, index) => (
-        <div key={`${product.id} ${index}`} className={style.containerCardCart}>
-          <Image
-            src={product.image}
-            alt={product.title}
-            width={200}
-            height={200}
-            sizes="80vw"
-          />
-          <div>
-            <div className={style.titleProduct}>
-              <h4>{product.title}</h4>
-            </div>
-            <div className={style.containerText}>
-              <h4>Marca:</h4>
-              <p>{product.brand.toUpperCase()} </p>
-            </div>
-            <div className={style.containerText}>
-              <h4>Modelo:</h4>
-              <p>{product.model.toUpperCase()} </p>
-            </div>
-            <div className={style.containerText}>
-              <h4>Cor:</h4>
-              <p>{product.color.toUpperCase()} </p>
-            </div>
-            <div className={style.containerText}>
-              <h4>Preço:</h4>
-              <p>${product.price} </p>
+      {cartEmpty ? (
+        <h3
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "20px",
+          }}
+        >
+          O carrinho está vazio! Adicione mais produtos
+        </h3>
+      ) : (
+        productsCart.map((product, index) => (
+          <div
+            key={`${product.id} ${index}`}
+            className={style.containerCardCart}
+          >
+            <Image
+              src={product.image}
+              alt={product.title}
+              width={200}
+              height={200}
+              sizes="80vw"
+            />
+            <div>
+              <div className={style.titleProduct}>
+                <h4>{product.title}</h4>
+              </div>
+              <div className={style.containerText}>
+                <h4>Marca:</h4>
+                <p>{product.brand.toUpperCase()} </p>
+              </div>
+              <div className={style.containerText}>
+                <h4>Modelo:</h4>
+                <p>{product.model.toUpperCase()} </p>
+              </div>
+              <div className={style.containerText}>
+                <h4>Cor:</h4>
+                <p>{product.color.toUpperCase()} </p>
+              </div>
+              <div className={style.containerText}>
+                <h4>Preço:</h4>
+                <p>${product.price} </p>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      )}
     </section>
   );
 }

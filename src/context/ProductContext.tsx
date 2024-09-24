@@ -17,7 +17,6 @@ export function ProductContextProvider({ children }: ProviderProps) {
   const [productsCart, setProductCart] = React.useState<Product[]>([]);
 
   const handleAddProduct = (product: Product) => {
-    //TODO: Precisa de um debounce para não clicar no botão varias vezes
     setProductCart([...productsCart, product]);
   };
   return (

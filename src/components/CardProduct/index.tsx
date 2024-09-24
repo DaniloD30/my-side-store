@@ -5,12 +5,9 @@ import Link from "next/link";
 import styles from "./card-product.module.css";
 import { useProduct } from "@/context/ProductContext";
 
-//TODO: Toast de Produto adicionado no carrinho ou algum feedback
-//TODO: Componetizar Button
-//TODO: Testes Unitarios
-
 export default function CardProduct({ product }: { product: Product }) {
   const { handleAddProduct } = useProduct();
+
   return (
     <div className={styles.card}>
       <Link href={`/product/${product.id}`}>
@@ -30,7 +27,6 @@ export default function CardProduct({ product }: { product: Product }) {
           <h5 className={styles.title}>${product.price}</h5>
         </div>
       </Link>
-      {/* //TODO: Verificar se ja foi adicionado ao cart */}
       <div className={styles.containerTitle}>
         <button onClick={() => handleAddProduct(product)}>
           Adicionar ao carrinho

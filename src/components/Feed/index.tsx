@@ -11,12 +11,6 @@ import Pagination from "../Pagination";
 import { initialState, reducer } from "@/functions/reducer";
 import { Spinner } from "../Spinner";
 
-//TODO: Lembre das responsabilidades
-//TODO: Componentes Condicionais
-//TODO: Responsividade
-//TODO: Publicação na Vercel
-//TODO: Testes Unitarios
-
 export default function Feed() {
   const [state, dispatch] = useReducer(reducer, initialState);
 

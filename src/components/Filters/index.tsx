@@ -2,14 +2,12 @@
 import { Action } from "@/functions/reducer";
 import styles from "./filters.module.css";
 
-//TODO: Testes Unitarios
-
 export default function Filters({
   categories,
   nameSearch,
   dispatch,
   category,
-  loadingCategories
+  loadingCategories,
 }: {
   nameSearch: string;
   category: string;

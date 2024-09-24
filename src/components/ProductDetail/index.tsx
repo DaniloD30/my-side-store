@@ -4,10 +4,9 @@ import styles from "./product-detail.module.css";
 import { Product } from "../CardProduct/types";
 import { useProduct } from "@/context/ProductContext";
 
-//TODO: Component Button
-
 export default function ProductDetail({ product }: { product: Product }) {
   const { handleAddProduct } = useProduct();
+
   return (
     <>
       <div className={styles.containerDetail}>
@@ -47,7 +46,6 @@ export default function ProductDetail({ product }: { product: Product }) {
           </div>
         </div>
         <div className={styles.image}>
-          {/* //TODO: Verificar se ja foi adicionado ao cart */}
           <button
             className={styles.selectCategory}
             onClick={() => handleAddProduct(product)}
