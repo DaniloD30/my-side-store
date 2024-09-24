@@ -4,9 +4,8 @@ import { useProduct } from "@/context/ProductContext";
 import style from "./cart.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+
 //TODO: your cart is empty
-//TODO: Verificar a quantidade de itens do carrinho
-//TODO: Remover item do carrinho
 
 export default function Cart() {
   const { productsCart } = useProduct();
@@ -14,6 +13,7 @@ export default function Cart() {
   const router = useRouter();
 
   const label = productsCart.length > 1 ? "Produtos" : "Produto";
+
   return (
     <section className="container mainContainer">
       <div className={style.containerTitleAndButton}>
@@ -32,8 +32,8 @@ export default function Cart() {
           </button>
         </div>
       </div>
-      {productsCart.map((product) => (
-        <div className={style.containerCardCart}>
+      {productsCart.map((product, index) => (
+        <div key={`${product.id} ${index}`} className={style.containerCardCart}>
           <Image
             src={product.image}
             alt={product.title}
