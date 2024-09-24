@@ -22,5 +22,5 @@
 
 ## Deploy
 
-Link para visistar a aplicação:
+Link para visitar a aplicação:
 - [My Side Store!](https://my-side-store.vercel.app/) 
