@@ -29,11 +29,13 @@
 
 @media (max-width: 992px) {
     .containerCardCart {
-     flex-direction: column;
-     height: fit-content;
-     align-items: center;
+        flex-direction: column;
+        height: fit-content;
+        align-items: center;
+        justify-content: center;
     }
-  }
+}
+
 .containerText {
     display: flex;
     gap: 10px
@@ -63,4 +65,16 @@
     border-color: rgba(234, 76, 137, 0.4);
     background-color: #fff;
     box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+}
+
+@media (max-width: 992px) {
+    .containerTitleAndButton {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+
 }
