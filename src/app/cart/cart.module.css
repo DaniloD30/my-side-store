@@ -19,7 +19,7 @@
     display: flex;
     width: 60%;
     height: 224px;
-    margin-top: 20px;
+    margin-top: 0px;
     border: 2px solid #000;
     background-color: #fff;
     padding: 1.5rem;
@@ -27,6 +27,13 @@
     transition: all 0.2s ease-out 0ms;
 }
 
+@media (max-width: 992px) {
+    .containerCardCart {
+     flex-direction: column;
+     height: fit-content;
+     align-items: center;
+    }
+  }
 .containerText {
     display: flex;
     gap: 10px
