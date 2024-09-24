@@ -26,8 +26,8 @@ export default function Feed() {
   }, []);
 
   useEffect(() => {
+    dispatch({ type: "SET_LOADING", payload: true });
     startTransition(async () => {
-      dispatch({ type: "SET_LOADING", payload: true });
       const { data } = await productsGet(state.page);
       if (data) {
         dispatch({ type: "SET_LOADING", payload: false });
