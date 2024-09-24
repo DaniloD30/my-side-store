@@ -4,8 +4,6 @@ import { ResponseProduct } from "../CardProduct/types";
 import styles from "./products.module.css";
 import searchProductsByTitle from "@/utils/searchProductsByTitle";
 
-//TODO: Testes Unitarios
-
 export default function Products({
   data,
   nameSearch,
@@ -13,14 +11,24 @@ export default function Products({
   data?: ResponseProduct;
   nameSearch: string;
 }) {
-  //TODO: Products contem uma lista de card Products e a paginação
-  //TODO: Loading
-
   return (
     <div className={styles.containerProducts}>
-      {searchProductsByTitle(nameSearch, data)?.products.map((item, index) => (
-        <CardProduct key={item.id + index} product={item} />
-      ))}
+      {searchProductsByTitle(nameSearch, data)?.products?.length! > 0 ? (
+        searchProductsByTitle(nameSearch, data)?.products.map((item, index) => (
+          <CardProduct key={item.id + index} product={item} />
+        ))
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            minHeight: "50vh",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <h3>Produto não encontrado!</h3>
+        </div>
+      )}
     </div>
   );
 }
