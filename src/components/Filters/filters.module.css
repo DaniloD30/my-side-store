@@ -5,6 +5,12 @@
     gap: 20px;
 }
 
+@media (max-width: 992px) {
+    .containerFilters {
+    justify-content: center;
+      gap: 30px; 
+    }
+  }
 .group {
     display: flex;
     line-height: 28px;
