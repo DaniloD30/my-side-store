@@ -1,7 +1,5 @@
 .container {
-
   margin-top: 20px;
-
   display: flex;
   flex-direction: column;
   background: var(--red-color-background);
@@ -109,7 +107,7 @@
   .page {
     flex-wrap: wrap; /* Permite que os elementos quebrem linha */
     margin: 0.3rem;
-
+    min-height: 15vh;
     .number,
     .numberActive,
     .btn,
